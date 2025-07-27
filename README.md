@@ -1,4 +1,69 @@
 # ai-iac-generator
+# ===================== README.md =====================
+# 🛠️ AI IaC Generator: Natural Language to Terraform + Architecture Diagram
+
+Generate Terraform code and architecture diagrams from natural language descriptions using GPT-4o.
+
+## 🚀 Features
+- Converts natural language into Terraform scripts (Azure-focused)
+- Generates architecture diagrams using Mermaid.js
+- FastAPI-based backend API
+- Output saved in local files for easy inspection
+
+## 🧪 Example Input
+```json
+{
+  "natural_language": "Deploy a 3-tier web app in Azure with Application Gateway, two VMs in an availability set, and a backend Azure SQL database."
+}
+```
+
+## 📦 Output
+### Terraform (main.tf)
+```hcl
+provider "azurerm" {
+  features {}
+}
+# ...
+```
+
+### Mermaid Diagram (diagram.mmd)
+```mermaid
+graph TD
+    AGW[Application Gateway] --> VM1[Web VM 1]
+    AGW --> VM2[Web VM 2]
+    VM1 --> SQL[Azure SQL DB]
+    VM2 --> SQL
+```
+
+## 🧰 Setup Instructions
+```bash
+git clone https://github.com/yourname/ai-iac-generator
+cd ai-iac-generator
+
+# Set OpenAI key in .env
+echo "OPENAI_API_KEY=sk-xxx" > .env
+
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+## 🧪 Test the API
+```bash
+curl -X POST http://localhost:8000/generate \
+  -H "Content-Type: application/json" \
+  -d @examples/sample_request.json
+```
+
+## 📈 Roadmap
+- AWS / GCP IaC support
+- Frontend UI with live Mermaid render
+- Cost estimation and optimization hints
+
+## 📄 License
+MIT
+
+
+
 Generative AI application that converts a cloud engineer's natural language infrastructure specification
 
 
